@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,15 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(public router: Router) {}
 
+  public submit(){
+    this.router.navigate(['categories']);
+  }
+
+  ngOnInit() {
+    if (window.localStorage.getItem('sessio') == null || window.localStorage.getItem('sessio') == "0"){
+      this.router.navigate(['login']);
+    }
+  }
 }
