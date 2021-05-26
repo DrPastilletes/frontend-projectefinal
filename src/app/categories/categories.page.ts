@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ApiService} from "../api.service";
 import {NavigationExtras, Router} from "@angular/router";
+import {Categoria} from "../../models/categoria.model";
 
 @Component({
   selector: 'app-categories',
@@ -8,10 +9,14 @@ import {NavigationExtras, Router} from "@angular/router";
   styleUrls: ['./categories.page.scss'],
 })
 export class CategoriesPage implements OnInit {
-  public categories: any;
+  public categories: Categoria[];
   constructor(public api: ApiService, public router: Router) {
     this.categories = [];
   }
+  anarComanda(){
+    this.router.navigate(["comanda"]);
+  }
+
 
   public goPage(page,idCategoria,nomCategoria){
     let navigationExtras: NavigationExtras = {

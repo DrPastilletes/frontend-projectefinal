@@ -1,5 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Taula} from "../models/taula.model";
+import {Categoria} from "../models/categoria.model";
+import {Producte} from "../models/producte.model";
 
 
 @Injectable({
@@ -19,14 +22,21 @@ export class ApiService {
 
   public agafarCategories(id, dades) {
     this.http.post('http://localhost:8000/categoria/categories', id).subscribe(
-      (res: any) => {
+      (res: Categoria[]) => {
+        dades(res);
+      });
+  }
+
+  public agafarTaules(id, dades) {
+    this.http.post('http://localhost:8000/taula/taules', id).subscribe(
+      (res: Taula[]) => {
         dades(res);
       });
   }
 
   public agafarProductes(idCategoria, dades) {
     this.http.post('http://localhost:8000/producte/productesByCategoria', idCategoria).subscribe(
-      (res: any) => {
+      (res: Producte[]) => {
         dades(res);
       });
   }

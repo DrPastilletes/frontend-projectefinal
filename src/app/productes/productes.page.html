@@ -1,15 +1,21 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="categories"></ion-back-button>
+    </ion-buttons>
     <ion-title>Productes</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card *ngFor="let item of productes">
+  <ion-card *ngFor="let producte of productes">
     <ion-item>
-      <ion-icon src="{{item.icon}}"></ion-icon>
-      <ion-label>{{item.nom}}</ion-label>
-      <ion-label>{{item.preu | number:'1.2-2'}} €</ion-label>
+      <ion-icon src="{{producte.icon}}"></ion-icon>
+      <ion-label>{{producte.nom}}</ion-label>
+      <ion-label>{{producte.preu | number:'1.2-2'}} €</ion-label>
+      <ion-button type="submit" (click)="afegirProductes(producte.id)" *ngIf="producte.disponible == true">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
     </ion-item>
   </ion-card>
 

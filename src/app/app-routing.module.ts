@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'categories',
     loadChildren: () => import('./categories/categories.module').then( m => m.CategoriesPageModule)
   },
+  {
+    path: 'comanda',
+    loadChildren: () => import('./comanda/comanda.module').then( m => m.ComandaPageModule)
+  },
 ];
 
 @NgModule({

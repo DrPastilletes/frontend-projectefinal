@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../api.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Producte} from "../../models/producte.model";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-productes',
@@ -9,10 +11,19 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class ProductesPage implements OnInit {
   public idCategoria: string;
-  public productes: any;
+  public productes: Producte[];
   public nomCategoria: string;
 
-  constructor(public api: ApiService, public router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private formBuilder: FormBuilder,public api: ApiService, public router: Router, private activatedRoute: ActivatedRoute) {
+  }
+  afegirProductes(id){
+    console.log(id);
+    if(localStorage.getItem("productes-"+localStorage.getItem("taulaActual")) == null){
+      localStorage.setItem("productes-"+localStorage.getItem("taulaActual"),id);
+    }else {
+      let storage =localStorage.getItem("productes-"+localStorage.getItem("taulaActual"));
+      localStorage.setItem("productes-"+localStorage.getItem("taulaActual"),storage+","+id);
+    }
   }
 
   ngOnInit() {
@@ -46,6 +57,8 @@ export class ProductesPage implements OnInit {
         }
       }
     })
+
+
   }
 
 }
