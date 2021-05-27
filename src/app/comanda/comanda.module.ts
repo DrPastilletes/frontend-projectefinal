@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -9,12 +9,13 @@ import { ComandaPageRoutingModule } from './comanda-routing.module';
 import { ComandaPage } from './comanda.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ComandaPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ComandaPageRoutingModule,
+        ReactiveFormsModule
+    ],
   declarations: [ComandaPage]
 })
 export class ComandaPageModule {}

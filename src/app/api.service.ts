@@ -40,4 +40,10 @@ export class ApiService {
         dades(res);
       });
   }
+  public agafarProductePerId(idProducte, dades) {
+    this.http.post('http://localhost:8000/producte/productesById', idProducte).subscribe(
+      (res: Producte[]) => {
+        dades(res);
+      });
+  }
 }

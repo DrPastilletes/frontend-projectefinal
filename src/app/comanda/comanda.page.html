@@ -8,10 +8,18 @@
 </ion-header>
 
 <ion-content>
-<form>
+  <ion-card *ngFor="let producte of arrayProductes">
+    <ion-item>
+      <ion-label>{{producte.nom}}</ion-label>
+      <ion-label slot="end">x{{arrayOrdenats[producte.id]}}</ion-label>
+
+    </ion-item>
+  </ion-card>
+<form [formGroup]="comandaForm" (ngSubmit)="enviar()">
   <ion-item>
     <ion-label position="floating">Obesrvacions</ion-label>
-    <ion-textarea></ion-textarea>
+    <ion-textarea formControlName="observacions"></ion-textarea>
   </ion-item>
+  <ion-button type="submit" expand="block">Enviar Comanda</ion-button>
 </form>
 </ion-content>

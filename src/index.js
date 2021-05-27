@@ -1,5 +1,6 @@
 let app = require('express')();
 let server = require('http').createServer(app);
+
 const io = require("socket.io")(server, {
   cors: {
     origin: "*",
@@ -21,6 +22,7 @@ io.on('connection', (socket) => {
   socket.on('set-order', (order) => {
     socket.order = order;
     io.emit('order-sent', {order: order, event: 'send-order'});
+    console.log("Order-sent")
   });
 
   socket.on('send-message', (message) => {

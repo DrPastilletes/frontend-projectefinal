@@ -9,15 +9,7 @@ export interface Comanda{
   acabat:boolean;
   horaAcabat:Date;
   preuTotal:number;
-}
-
-export class initComanda{
-  id:number = null;
-  taula:Taula = null;
-  productes:Producte[] = [];
-  acabat:boolean = null;
-  horaAcabat:Date = null;
-  preuTotal:number = null;
+  comentari:string
 }
 
 
