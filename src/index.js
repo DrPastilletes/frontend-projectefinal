@@ -20,9 +20,11 @@ io.on('connection', (socket) => {
   });
 
   socket.on('set-order', (order) => {
+    socket.join('rom');
+    console.log(order);
     socket.order = order;
-    io.emit('order-sent', {order: order, event: 'send-order'});
-    console.log("Order-sent")
+    io.emit('order-sent', order);
+    console.log("Order-sent");
   });
 
   socket.on('send-message', (message) => {
