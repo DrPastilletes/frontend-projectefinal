@@ -9,7 +9,8 @@ export interface Comanda{
   acabat:boolean;
   horaAcabat:Date;
   preuTotal:number;
-  comentari:string
+  comentari:string;
+  bar:number
 }
 
 

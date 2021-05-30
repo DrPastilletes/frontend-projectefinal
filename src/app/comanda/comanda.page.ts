@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../api.service";
 import {Producte} from "../../models/producte.model";
 import {FormBuilder} from "@angular/forms";
+import {Socket} from "ngx-socket-io";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-comanda',
@@ -16,7 +18,7 @@ export class ComandaPage implements OnInit {
   public arrayProductes: Producte[];
   public arrayOrdenats: any[];
 
-  constructor(private formBuilder: FormBuilder, public api: ApiService) {
+  constructor(private formBuilder: FormBuilder, public api: ApiService, private socket: Socket, public router: Router) {
     this.arrayProductes = []
     this.arrayOrdenats = []
   }
@@ -49,10 +51,17 @@ export class ComandaPage implements OnInit {
       }
     }
     let comanda = {
-      taula: localStorage.getItem("taulaActual"),
-      productes: arrayProdFinal,
-      acabat: false,
-      comentari: this.comandaForm.get("observacions").value
+      "taula": localStorage.getItem("taulaActual"),
+      "productes": arrayProdFinal,
+      "acabat": false,
+      "comentari": this.comandaForm.get("observacions").value,
+      "bar": localStorage.getItem("id"),
+      "preu": preuTotal
     };
+    this.socket.connect();
+    this.socket.emit('set-order', JSON.parse(JSON.stringify(comanda)));
+    localStorage.removeItem("productes-" + localStorage.getItem("taulaActual"));
+    localStorage.removeItem("taulaActual");
+    this.router.navigate(['home']);
   }
 }
