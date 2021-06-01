@@ -9,6 +9,7 @@ import {Taula} from "../../models/taula.model";
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+
 export class HomePage {
   public taules: Taula[];
   constructor(public router: Router,public api: ApiService, private socket: Socket) {}
@@ -18,10 +19,11 @@ export class HomePage {
     this.router.navigate(['categories']);
   }
 
-  public prova(){
-    var order = {id:"123",products:"1",message:"caca"};
-    this.socket.connect();
-    this.socket.emit('set-order', order);
+  public logOut(){
+    window.localStorage.removeItem("sessio");
+    window.localStorage.removeItem("id");
+    window.localStorage.removeItem("nom");
+    this.router.navigate(['login']);
   }
 
   ngOnInit() {
