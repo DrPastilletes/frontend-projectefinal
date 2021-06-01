@@ -14,34 +14,34 @@ export class ApiService {
   }
 
   public ferLogin(formulari, dades) {
-    this.http.post('http://localhost:8000/comprovarLoginApi', formulari.value).subscribe(
+    this.http.post('http://204.236.195.143:8000/comprovarLoginApi', formulari.value).subscribe(
       (res: any) => {
         dades(res);
       });
   }
 
   public agafarCategories(id, dades) {
-    this.http.post('http://localhost:8000/categoria/categories', id).subscribe(
+    this.http.post('http://204.236.195.143:8000/categoria/categories', id).subscribe(
       (res: Categoria[]) => {
         dades(res);
       });
   }
 
   public agafarTaules(id, dades) {
-    this.http.post('http://localhost:8000/taula/taules', id).subscribe(
+    this.http.post('http://204.236.195.143:8000/taula/taules', id).subscribe(
       (res: Taula[]) => {
         dades(res);
       });
   }
 
   public agafarProductes(idCategoria, dades) {
-    this.http.post('http://localhost:8000/producte/productesByCategoria', idCategoria).subscribe(
+    this.http.post('http://204.236.195.143:8000/producte/productesByCategoria', idCategoria).subscribe(
       (res: Producte[]) => {
         dades(res);
       });
   }
   public agafarProductePerId(idProducte, dades) {
-    this.http.post('http://localhost:8000/producte/productesById', idProducte).subscribe(
+    this.http.post('http://204.236.195.143:8000/producte/productesById', idProducte).subscribe(
       (res: Producte[]) => {
         dades(res);
       });
